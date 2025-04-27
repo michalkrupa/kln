@@ -1,6 +1,6 @@
-scipy==1.26.4
-numpy==1.26.4
-matplotlib==3.8.4
-torch==2.7.0
-datasets==3.5.0
-sentence-transformers==4.1.0
+scipy
+numpy
+matplotlib
+torch
+datasets
+sentence-transformers
