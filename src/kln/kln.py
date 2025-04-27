@@ -1,13 +1,3 @@
-"""
-KLN (Kullback-Leibler Nonlinearities)
--------------------------------------
-Flexible Conditional Modeling Package.
-
-Provides:
-- FlexibleConditional: A module for learning structured conditional dependencies 
-  that can interpolate between linear and nonlinear mappings.
-"""
-
 import torch
 import torch.nn as nn
 
@@ -32,7 +22,7 @@ class FlexibleConditional(nn.Module):
             nn.ReLU(),
             nn.Linear(hidden_dim, output_dim)
         )
-        self.alpha = nn.Parameter(torch.tensor(0.5))
+        self.alpha = nn.Parameter(torch.tensor(0.5))  # Learnable mixing coefficient
 
     def forward(self, i, j):
         """
@@ -65,11 +55,15 @@ def create_flexible_model(input_dim, hidden_dim=64, output_dim=1):
     Parameters:
     ----------
     input_dim : int
-    hidden_dim : int
-    output_dim : int
+        The input dimensionality (i + j combined).
+    hidden_dim : int, optional
+        Hidden layer size for the nonlinear path (default=64).
+    output_dim : int, optional
+        Output dimension (default=1).
 
     Returns:
     -------
     FlexibleConditional
+        Instantiated FlexibleConditional model.
     """
     return FlexibleConditional(input_dim, hidden_dim, output_dim)
