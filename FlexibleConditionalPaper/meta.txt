@@ -1,6 +1,6 @@
 Title: Flexible Conditional Modeling with Linear-Nonlinear Mixtures for Structured Dependency Learning
-Authors: Michal Krupa
+Authors: Research Prototype
 Categories: cs.LG (Machine Learning), stat.ML (Statistics - Machine Learning)
-Comments: 8 pages, 1 figure
+Comments: 16 pages, 6 figures
 Report No: 
 DOI: 

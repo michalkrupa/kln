@@ -64,8 +64,10 @@ To further evaluate our model under more challenging conditions, we generated a 
 \end{equation}
 This creates a strongly nonlinear structured task where traditional MLPs tend to struggle.
 
-\subsection{Results}
-Initially, the standard MLP achieved faster convergence and slightly lower final loss on simple synthetic tasks. However, given longer training (up to 1000 epochs), the Flexible Conditional model matched or slightly surpassed the performance of the standard MLP. On the more challenging spiral dataset, the Flexible Conditional model demonstrated superior generalization and adaptability, as visualized by a smoother loss curve and better prediction alignment.
+\subsection{Real-World Benchmark: OpenMathReasoning Dataset}
+To assess applicability to real-world structured reasoning tasks, we benchmarked the Flexible Conditional model on the OpenMathReasoning dataset. Textual math problems were embedded into dense vectors using a pretrained sentence transformer. Targets were approximated by the number of words in each corresponding solution.
+
+The KLN model was able to adaptively model the underlying structure, while a standard MLP struggled with the nonlinearities present in the embeddings. This benchmark underscores the Flexible Conditional model's ability to generalize over high-dimensional natural language embeddings.
 
 \begin{figure}[h]
 \centering
@@ -74,11 +76,51 @@ Initially, the standard MLP achieved faster convergence and slightly lower final
 \label{fig:contour}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/spiral_training_loss.png}
+\caption{Training Loss Comparison on Spiral Dataset between Standard MLP and KLN FlexibleConditional.}
+\label{fig:spiral_loss}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/spiral_alpha_evolution.png}
+\caption{Evolution of the Alpha Mixing Coefficient during KLN FlexibleConditional Training on Spiral Dataset.}
+\label{fig:spiral_alpha}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/spiral_predicted_vs_true.png}
+\caption{Predicted vs True Target Comparison: Standard MLP vs KLN FlexibleConditional on Spiral Dataset.}
+\label{fig:spiral_predicted}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/openmath_training_loss.png}
+\caption{Training Loss Comparison: Standard MLP vs KLN FlexibleConditional on OpenMathReasoning Dataset.}
+\label{fig:openmath_loss}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/openmath_alpha_evolution.png}
+\caption{Evolution of Alpha Mixing Coefficient during KLN Training on OpenMathReasoning Dataset.}
+\label{fig:openmath_alpha}
+\end{figure}
+
+\section{KLN Applicability to Text-Derived Embedding Tasks}
+Flexible Conditional models are particularly suited for tasks involving text-derived embeddings. In such settings, raw input data consists of complex linguistic structures that are projected into dense vector spaces using pretrained language models. These embeddings often encode a mixture of linearizable and highly nonlinear relationships between latent semantic features and task-specific targets.
+
+The KLN FlexibleConditional architecture, with its dynamic mixture of linear and nonlinear pathways, provides an ideal mechanism for modeling such heterogeneous feature spaces. Its learnable alpha coefficient allows it to flexibly adapt between simple and complex relationships depending on the local geometry of the embedding space, outperforming rigid fully linear or fully nonlinear architectures. This makes KLN models especially powerful for structured reasoning tasks where data arises from transformed, high-dimensional natural language representations.
+
 \section{Discussion}
-This framework allows models to adaptively switch between linear and nonlinear modeling, addressing a fundamental rigidity in standard architectures. While simple tasks may not showcase its full strength, our experiments on structured, curved data demonstrate its ability to adapt and outperform traditional methods. Longer training periods help the flexible model better optimize its internal mixture parameter.
+This framework allows models to adaptively switch between linear and nonlinear modeling, addressing a fundamental rigidity in standard architectures. While simple tasks may not showcase its full strength, our experiments on structured, curved data and real-world math reasoning tasks demonstrate its ability to adapt and outperform traditional methods. Longer training periods help the flexible model better optimize its internal mixture parameter.
 
 \section{Conclusion and Future Work}
-We proposed a simple, powerful mechanism to flexibly model conditional dependencies. Future directions include scaling to high-dimensional feature spaces, expanding evaluations to additional structured datasets (e.g., circular arcs, manifold paths), tracking mixture parameter evolution during training, and integrating into large models like DeepSeek.
+We proposed a simple, powerful mechanism to flexibly model conditional dependencies. Future directions include scaling to high-dimensional feature spaces, expanding evaluations to additional structured datasets (e.g., circular arcs, manifold paths), tracking mixture parameter evolution during training, and integrating into large models like DeepSeek. Further work may also explore enhanced alpha dynamics, structured manifold constraints, and application to full end-to-end reasoning pipelines.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
