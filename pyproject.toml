@@ -1,10 +1,10 @@
 [project]
-name = "KLN"
+name = "FCKLN"
 version = "0.0.3"
 authors = [
   { name="Michal Krupa", email="michalkrupa@gmail.com" },
 ]
-description="Flexible Conditional Modeling for Structured Dependencies",
+description="Flexible Conditional Modeling for Structured Dependencies"
 readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
