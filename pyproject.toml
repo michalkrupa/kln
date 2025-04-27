@@ -1,21 +1,25 @@
 [project]
 name = "KLN"
-version = "1.0.0"
+version = "0.0.3"
 authors = [
   { name="Michal Krupa", email="michalkrupa@gmail.com" },
 ]
-description = "Enter description here"
+description="Flexible Conditional Modeling for Structured Dependencies",
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
 dependencies = [
     "scipy>=1.8,<2.0",
+    "numpy==1.26.4".
+    "matplotlib==3.8.4",
+    "torch==2.7.0"
 ]
 
 [project.urls]
