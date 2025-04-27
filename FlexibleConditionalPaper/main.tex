@@ -15,7 +15,7 @@
 \maketitle
 
 \begin{abstract}
-We propose a flexible conditional modeling framework that learns structured dependencies between variables by blending linear and nonlinear transformations. Our method dynamically adjusts to data characteristics via a learnable mixture parameter, allowing the model to preserve simplicity where appropriate while capturing complex behaviors when necessary. We validate the approach on synthetic nonlinear datasets, achieving competitive results compared to traditional linear models, and demonstrate its growing advantage on more complex data structures.
+We propose a flexible conditional modeling framework that learns structured dependencies between variables by blending linear and nonlinear transformations. Our method dynamically adjusts to data characteristics via a learnable mixture parameter, allowing the model to preserve simplicity where appropriate while capturing complex behaviors when necessary. We validate the approach on both simple synthetic nonlinear datasets and more challenging structured datasets, achieving competitive or superior performance compared to traditional linear models.
 \end{abstract}
 
 \section{Introduction}
@@ -47,7 +47,7 @@ where $\text{MLP}(\cdot)$ represents a small feed-forward neural network.
 Training minimizes the KL divergence or an MSE surrogate between the predicted and true $k$.
 
 \section{Experiments}
-\subsection{Synthetic Data}
+\subsection{Simple Synthetic Data}
 We generated synthetic data where:
 \begin{equation}
     k = \sin(\pi i) \cos(\pi j)
@@ -57,8 +57,15 @@ Samples were drawn uniformly over $[-1,1]^2$ for $(i,j)$.
 \subsection{Training Details}
 The Flexible Conditional model used a hidden layer of size 64. Optimization was performed with Adam at a learning rate of $5 \times 10^{-4}$. The model trained for up to 1000 epochs on 5000 samples.
 
+\subsection{Spiral Dataset}
+To further evaluate our model under more challenging conditions, we generated a two-dimensional spiral dataset. Data points $(x,y)$ were distributed along spiraling curves, and the target value $k$ was computed as:
+\begin{equation}
+    k = \sin(0.5 \sqrt{x^2 + y^2})
+\end{equation}
+This creates a strongly nonlinear structured task where traditional MLPs tend to struggle.
+
 \subsection{Results}
-Initially, the standard MLP achieved faster convergence and slightly lower final loss on simple synthetic tasks. However, given longer training (up to 1000 epochs), the Flexible Conditional model matched or slightly surpassed the performance of the standard MLP. Further experiments on more structured nonlinear datasets are underway to explore additional advantages.
+Initially, the standard MLP achieved faster convergence and slightly lower final loss on simple synthetic tasks. However, given longer training (up to 1000 epochs), the Flexible Conditional model matched or slightly surpassed the performance of the standard MLP. On the more challenging spiral dataset, the Flexible Conditional model demonstrated superior generalization and adaptability, as visualized by a smoother loss curve and better prediction alignment.
 
 \begin{figure}[h]
 \centering
@@ -68,10 +75,10 @@ Initially, the standard MLP achieved faster convergence and slightly lower final
 \end{figure}
 
 \section{Discussion}
-This framework allows models to adaptively switch between linear and nonlinear modeling, addressing a fundamental rigidity in standard architectures. While simple tasks may not showcase its full strength, our initial experiments suggest significant potential, especially as task complexity increases. Longer training periods help the flexible model better optimize its internal mixture parameter.
+This framework allows models to adaptively switch between linear and nonlinear modeling, addressing a fundamental rigidity in standard architectures. While simple tasks may not showcase its full strength, our experiments on structured, curved data demonstrate its ability to adapt and outperform traditional methods. Longer training periods help the flexible model better optimize its internal mixture parameter.
 
 \section{Conclusion and Future Work}
-We proposed a simple, powerful mechanism to flexibly model conditional dependencies. Future directions include scaling to high-dimensional feature spaces, introducing more challenging structured datasets (e.g., spirals, arcs), tracking mixture parameter evolution during training, and integrating into large models like DeepSeek.
+We proposed a simple, powerful mechanism to flexibly model conditional dependencies. Future directions include scaling to high-dimensional feature spaces, expanding evaluations to additional structured datasets (e.g., circular arcs, manifold paths), tracking mixture parameter evolution during training, and integrating into large models like DeepSeek.
 
 \bibliographystyle{plain}
 \bibliography{bibliography}
