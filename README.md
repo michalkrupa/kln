@@ -13,6 +13,7 @@ OpenAI's ChatGPT provided substantial assistance with the research, writing, and
 
 We thank the contributors to open-source geometry libraries and acknowledge the support of interdisciplinary visualization research.
 
+We would also like to include [this poem](https://github.com/michalkrupa/kln/blob/main/FlexibleConditionalPaper/poem.md), written by ChatGPT o4
 #### REFERENCES
 [1] J. A. Reeds and L. A. Shepp. 1990. Optimal paths for a car that goes both forwards and backwards. Pacific J. Math. 145, 2 (1990), 367–393.
 
