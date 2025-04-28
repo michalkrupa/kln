@@ -1,4 +1,4 @@
-#[DRAFT]
+# [DRAFT]
 
 ### Overview
 We propose a flexible conditional modeling framework that learns structured dependencies between variables by blending linear and nonlinear transformations. Our method dynamically adjusts to data characteristics via a learnable mixture parameter, allowing the model to preserve simplicity where appropriate while capturing complex behaviors when necessary. We validate the approach on synthetic nonlinear datasets, achieving significant improvements over traditional linear models. This framework opens the door for scalable integration into large models, including language model retraining where structured paths in latent space matter.
